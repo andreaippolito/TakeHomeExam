@@ -30,8 +30,8 @@ D(N-1,N-1) = A(N-1,N-1);
 
 %Reference solution (remove the percentage to plot)
 u_ref = @(x) (exp(x/epsilon) - exp(1/epsilon)) / (1 - exp(1/epsilon));
-fplot(u_ref, [0,1]);
-hold on
+%fplot(u_ref, [0,1]);
+%hold on
 
 %Jacobi matrix
 B_jac = eye(N-1) - inv(D)*A;
@@ -44,10 +44,10 @@ e_max_jac = max(abs(e_jac));
 
 %right hand side
 f = zeros(N-1, 1);
-f(1) = epsilon/h^2 + 1/h
+f(1) = epsilon/h^2 + 1/h;
 
 u = A\f;
-plot(h:h:1-h, u)
+%plot(h:h:1-h, u)
 
 %test1
 %disp(A)
@@ -62,4 +62,14 @@ plot(h:h:1-h, u)
 %if (A == D-E-F)
 %    disp('Correct')
 %end
+
+[problemMatrix, knownTerm] = ProblemGenerator(N, h, epsilon);
+initialGuess = zeros(N-1,1);
+tolerance = 1/1000;
+[residualNorms, numberOfIterations] = JacobiMethodSolver(problemMatrix ,knownTerm, tolerance, initialGuess);
+[residualNorms, numberOfIterations] = ForwardGaussSeidelSolver(problemMatrix ,knownTerm, tolerance, initialGuess);
+[residualNorms, numberOfIterations] = BackwardGaussSeidelSolver(problemMatrix ,knownTerm, tolerance, initialGuess);
+[residualNorms, numberOfIterations] = SymmetricGaussSeidelSolver(problemMatrix ,knownTerm, tolerance, initialGuess);
+
+
 
