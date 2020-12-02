@@ -65,7 +65,7 @@ u = A\f;
 
 [problemMatrix, knownTerm] = ProblemGenerator(N, h, epsilon);
 initialGuess = zeros(N-1,1);
-tolerance = 1/1000;
+tolerance = 10^-6;
 [residualNorms, numberOfIterations] = JacobiMethodSolver(problemMatrix ,knownTerm, tolerance, initialGuess);
 [residualNorms, numberOfIterations] = ForwardGaussSeidelSolver(problemMatrix ,knownTerm, tolerance, initialGuess);
 [residualNorms, numberOfIterations] = BackwardGaussSeidelSolver(problemMatrix ,knownTerm, tolerance, initialGuess);

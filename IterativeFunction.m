@@ -1,15 +1,12 @@
 function [residualNorms, numberOfIterations] = IterativeFunction(iterationMatrix, methodMatrix ,knownTerm, tolerance, initialGuess, problemMatrix) %#ok<*INUSL>
 %ITERATIVEFUNCTION Summary of this function goes here
 %   Detailed explanation goes here
-methodMatrix=methodMatrix^-1;
 problemDimension=size(iterationMatrix);
-U=zeros(problemDimension(1),5);
 previousResidual=knownTerm-problemMatrix*initialGuess;
 previousIteration=initialGuess;
 nextIteration=previousIteration+methodMatrix*previousResidual;
 nextResidual=ResidualCalculator(problemMatrix, methodMatrix, previousResidual);
 numberOfIterations=1;
-
 residualNorms(1)=max(abs(previousResidual));
 residualNorms(2)=max(abs(nextResidual));
 %residualNorms(1)=previousResidual;
