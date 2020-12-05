@@ -1,7 +1,7 @@
 function [Answer] = IrreducibilityCheck(matrix)
 %WARNING This only works for matrices where the 0's are symmetric 
 n = size(matrix);
-Answer = 0;
+Answer = 1;
 
 for ii=1:n
     v(ii) = ii;
@@ -16,7 +16,7 @@ for ii=1:sizes(1)
     end
     test = P*matrix*P';
     if BlockDiagonalCheck(test) == 1;
-        Answer = 1;
+        Answer = 0;
     end
 end
 end
