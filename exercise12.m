@@ -1,7 +1,7 @@
 tolerance=10^-6;
 epsilon=1;
 
-for ii= 4 : 8
+for ii= 4 : 4
     %while epsilon>10^-3
     while epsilon>0.004
     N=2^ii;
@@ -16,7 +16,7 @@ for ii= 4 : 8
     %end
     epsilon=epsilon/2;
     semilogy ( linspace(1,numberOfIterations,numberOfIterations), red, 'DisplayName', string(epsilon));
-    lgd = legend;
+    lgd = legend('Location','southwest'); 
     hold on
     end    
 
